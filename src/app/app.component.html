@@ -1,0 +1,72 @@
+<div class="formularioRegistro">
+  <h2>Crear Empleado</h2>
+  <form [formGroup]='empleadoForm' (ngSubmit)='guardar()'>
+    <div class="form-group">
+      <label>Numero de Empleado</label>
+      <input type="number" formControlName="numeroEmpleado" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Rol</label>
+      <select name="rol" id="rol" formControlName="rol" class="form-control">
+        <option [ngValue]="item" *ngFor='let item of roles'>{{item.nombre}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Mes</label>
+      <input type="number" formControlName="mes" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Numero de Entregas</label>
+      <input type="number" formControlName="numEntregas" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Horas mensuales</label>
+      <input type="number" formControlName="horas" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled] = empleadoForm.invalid>Guardar</button>
+  </form>
+</div>
+
+<div class="formularioRegistro">
+  <h2>Registro de empleado</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Numero Empleado</th>
+        <th>Nombre</th>
+        <th>Rol</th>
+        <th>Mes</th>
+        <th>Numero de Entregas</th>
+        <th>Horas mensuales</th>
+        <th>Total entregas</th>
+        <th>Total bonos</th>
+        <th>Retenciones</th>
+        <th>Vales</th>
+        <th>Total</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of empleados">
+        <td>{{item.numeroEmpleado}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.rol.nombre}}</td>
+        <td>{{item.mes}}</td>
+        <td>{{item.numEntregas}}</td>
+        <td>{{item.horas}}</td>
+        <td>{{item.totalEntregas}}</td>
+        <td>{{item.totalBonos}}</td>
+        <td>{{item.retenciones}}</td>
+        <td>{{item.vales}}</td>
+        <td>{{item.total}}</td>
+        <td><button type="button" class="btn btn-success" (click) = "editar(item)">Editar</button></td>
+        <td><button type="button" class="btn btn-danger" (click) = "eliminar(item)">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
